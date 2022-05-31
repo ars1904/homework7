@@ -23,10 +23,7 @@ while True:
     choice = input('Выберите пункт меню ')
     if choice == '1':
         nameFolder = input("Ввведите название папки")
-        if not os.path.exists(nameFolder):
-            os.mkdir(nameFolder)
-        if os.path.exists(nameFolder):
-            print("Такая папка уже есть")
+        print("Такая папка уже есть") if os.path.exists(nameFolder) else os.mkdir(nameFolder)
     elif choice == '2':
         nameFolder = input("Ввведите название папки/файла")
         os.rmdir(nameFolder)
@@ -47,15 +44,9 @@ while True:
     elif choice == '4':
         print(os.listdir())
     elif choice == '5':
-        f = []
-        for (dirpath, dirnames, filenames) in os.walk('console_file_manager'):
-            f.append(filenames)
-        print(f)
+        print(list(i for i in os.listdir() if os.path.isdir(i)))
     elif choice == '6':
-        f = []
-        for (dirpath, dirnames, filenames) in os.walk('console_file_manager'):
-            f.append(dirnames)
-        print(f)
+        print(list(i for i in os.listdir() if os.path.isfile(i)))
     elif choice == '7':
         print(sys.platform)
     elif choice == '8':
